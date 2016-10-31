@@ -21,11 +21,9 @@
  */
 
 #import "RSACViewController.h"
-#import "ScannerViewController.h"
 #import "Constants.h"
 #import "AppUtilities.h"
 #import "CharacteristicReader.h"
-#import "HelpViewController.h"
 
 @interface RSACViewController () {
     /*!
@@ -67,11 +65,12 @@
 - (void)appDidEnterBackground:(NSNotification *)_notification;
 - (void)appDidBecomeActiveBackground:(NSNotification *)_notification;
 
+-(IBAction)aboutButtonClicked:(id)sender;
+
 @end
 
 @implementation RSACViewController
 @synthesize bluetoothManager;
-@synthesize backgroundImage;
 @synthesize verticalLabel;
 @synthesize battery;
 @synthesize deviceName;
@@ -97,19 +96,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Adjust the background to fill the phone space
-    if (is4InchesIPhone)
-    {
-        // 4 inches iPhone
-        UIImage *image = [UIImage imageNamed:@"Background4.png"];
-        [backgroundImage setImage:image];
-    }
-    else
-    {
-        // 3.5 inches iPhone
-        UIImage *image = [UIImage imageNamed:@"Background35.png"];
-        [backgroundImage setImage:image];
-    }
     
     // Rotate the vertical label
     self.verticalLabel.transform = CGAffineTransformRotate(CGAffineTransformMakeTranslation(-170.0f, 0.0f), (float)(-M_PI / 2));
@@ -141,6 +127,10 @@
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
 }
 
+- (IBAction)aboutButtonClicked:(id)sender {
+    [self showAbout:[AppUtilities getRSACHelpText]];
+}
+
 - (IBAction)connectOrDisconnectClicked {
     if (connectedPeripheral != nil)
     {
@@ -159,29 +149,25 @@
     if ([segue.identifier isEqualToString:@"scan"])
     {
         // Set this contoller as scanner delegate
-        ScannerViewController *controller = (ScannerViewController *)segue.destinationViewController;
+        UINavigationController *nc = segue.destinationViewController;
+        NORScannerViewController *controller = (NORScannerViewController *)nc.childViewControllerForStatusBarHidden;
         controller.filterUUID = rscServiceUUID;
         controller.delegate = self;
-    }
-    else if ([[segue identifier] isEqualToString:@"help"]) {
-        isBackButtonPressed = NO;
-        HelpViewController *helpVC = [segue destinationViewController];
-        helpVC.helpText = [AppUtilities getRSACHelpText];
     }
 }
 
 #pragma mark Scanner Delegate methods
 
--(void)centralManager:(CBCentralManager *)manager didPeripheralSelected:(CBPeripheral *)peripheral
+-(void)centralManagerDidSelectPeripheralWithManager:(CBCentralManager *)aManager andPeripheral:(CBPeripheral *)aPeripheral
 {
     // We may not use more than one Central Manager instance. Let's just take the one returned from Scanner View Controller
-    bluetoothManager = manager;
+    bluetoothManager = aManager;
     bluetoothManager.delegate = self;
     
     // The sensor has been selected, connect to it
-    peripheral.delegate = self;
+    aPeripheral.delegate = self;
     NSDictionary *options = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:CBConnectPeripheralOptionNotifyOnNotificationKey];
-    [bluetoothManager connectPeripheral:peripheral options:options];
+    [bluetoothManager connectPeripheral:aPeripheral options:options];
 }
 
 #pragma mark Central Manager delegate methods
@@ -346,14 +332,14 @@
             UInt8 flags = [CharacteristicReader readUInt8Value:&array];
             BOOL strideLengthPresent = (flags & 0x01) > 0;
             BOOL totalDistancePresent = (flags & 0x02) > 0;
-            BOOL walking = (flags & 0x04) > 0;
-            if (walking)
+            BOOL running = (flags & 0x04) > 0;
+            if (running)
             {
-                [self.activity setText:@"WALKING"];
+                [self.activity setText:@"RUNNING"];
             }
             else
             {
-                [self.activity setText:@"RUNNING"];
+                [self.activity setText:@"WALKING"];
             }
             
             float speedValue = [CharacteristicReader readUInt16Value:&array] / 256.0f * 3.6f;
@@ -369,6 +355,11 @@
                 
                 float timeInterval = 65.0f / cadenceValue; // 60 second + 5 for calibration
                 timer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(timerFireMethod:) userInfo:nil repeats:NO];
+            }
+            
+            if (strideLengthPresent)
+            {
+                stripLength = [CharacteristicReader readUInt16Value:&array]; // [cm]
             }
             
             if (totalDistancePresent)
@@ -388,11 +379,6 @@
             else
             {
                 [self.totalDistance setText:@"n/a"];
-            }
-            
-            if (strideLengthPresent)
-            {
-                stripLength = [CharacteristicReader readUInt16Value:&array]; // [cm]
             }
         }
     });

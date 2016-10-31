@@ -4,11 +4,19 @@
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+<<<<<<< HEAD
+=======
+    "B914B81A7E8FA88EE4CB45173C7B2606D56E68A0" : 0,
+>>>>>>> NordicSemiconductor/master
     "958FE99C6EF42F577CD7208DD2E4411706BA021D" : 0,
     "F0C302ECCECFB665EA48C7A535F2A9D012C2B8FA" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "24AB6908-1111-4360-A8D1-865C2AD3CAC5",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+<<<<<<< HEAD
+=======
+    "B914B81A7E8FA88EE4CB45173C7B2606D56E68A0" : "ANT%20Shared%20Channel\/ANT%20Shared%20Channel\/",
+>>>>>>> NordicSemiconductor/master
     "958FE99C6EF42F577CD7208DD2E4411706BA021D" : "nRFToolbox",
     "F0C302ECCECFB665EA48C7A535F2A9D012C2B8FA" : "IOS-nRF-Toolbox\/"
   },
@@ -22,7 +30,16 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "958FE99C6EF42F577CD7208DD2E4411706BA021D"
     },
     {
+<<<<<<< HEAD
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mandigab\/IOS-nRF-Toolbox.git",
+=======
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "ssh:\/\/stash.nordicsemi.no:7999\/apps-ios\/ant-shared-channel-demo.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B914B81A7E8FA88EE4CB45173C7B2606D56E68A0"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/NordicSemiconductor\/IOS-nRF-Toolbox.git",
+>>>>>>> NordicSemiconductor/master
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F0C302ECCECFB665EA48C7A535F2A9D012C2B8FA"
     }
