@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "F0C302ECCECFB665EA48C7A535F2A9D012C2B8FA",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "958FE99C6EF42F577CD7208DD2E4411706BA021D" : 0,
+    "F0C302ECCECFB665EA48C7A535F2A9D012C2B8FA" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "24AB6908-1111-4360-A8D1-865C2AD3CAC5",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "958FE99C6EF42F577CD7208DD2E4411706BA021D" : "nRFToolbox",
+    "F0C302ECCECFB665EA48C7A535F2A9D012C2B8FA" : "IOS-nRF-Toolbox\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "nRF Toolbox",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "nRF Toolbox.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "ssh:\/\/stash.nordicsemi.no:7999\/apps-ios\/nrf-toolbox.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "958FE99C6EF42F577CD7208DD2E4411706BA021D"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mandigab\/IOS-nRF-Toolbox.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F0C302ECCECFB665EA48C7A535F2A9D012C2B8FA"
+    }
+  ]
+}
